@@ -1,0 +1,41 @@
+.swiper-container {
+    padding: 0 10%; /* Add padding to show partial slides */
+}
+
+.swiper-slide {
+    transition: transform 0.5s, opacity 0.5s;
+    transform: scale(0.8); /* Make the slides smaller */
+    opacity: 0.5; /* Darken the side slides */
+    overflow: hidden; /* Hide overflowing content */
+}
+
+.swiper-slide-active {
+    transform: scale(1); /* Scale up the active slide */
+    opacity: 1; /* Brighten the active slide */
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+/* Стили для стрелок навигации Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+    color: white; /* Измените цвет стрелок на белый */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 30px; /* Размер стрелок, можно настроить по вашему усмотрению */
+}
+
+/* Дополнительные стили для расположения стрелок, если необходимо */
+.swiper-button-next {
+    right: 10px; /* Расположение следующей стрелки справа */
+}
+
+.swiper-button-prev {
+    left: 10px; /* Расположение предыдущей стрелки слева */
+}
