@@ -3,7 +3,6 @@ import Slider from 'react-slick';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './CarSlider.css';
-import img from '../../assets/card.png'
 
 const NextArrow = ({ onClick }) => (
     <div
@@ -68,10 +67,10 @@ const CarSlider = () => {
             {cars.map((car, index) => (
                 <div key={index} className="p-3 mt-10" onClick={() => handleCardClick(car.id)}>
                     <div className="card-container">
-                        <img src={img} alt={car.name} className="card-image"/>
+                        <img src={car.image} alt={car.name} className="card-image"/>
                         <div className="card-gradient-top"></div>
                         <div className="card-info-top">
-                            <h3 className="text-lg font-semibold">{car.make + ' ' + car.model}</h3>
+                            <p className="text-lg">{car.make + ' ' + car.model}</p>
                             <p className="mt-2 text-sm">{car.price} Р/сут.</p>
                         </div>
                         <div className="card-gradient-bottom"></div>

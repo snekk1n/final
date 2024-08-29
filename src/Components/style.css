@@ -1,41 +1,62 @@
-.swiper-container {
-    padding: 0 10%; /* Add padding to show partial slides */
+.slider-container {
+    position: relative;
+    overflow: hidden;
 }
 
-.swiper-slide {
-    transition: transform 0.5s, opacity 0.5s;
-    transform: scale(0.8); /* Make the slides smaller */
-    opacity: 0.5; /* Darken the side slides */
-    overflow: hidden; /* Hide overflowing content */
+.slick-slide {
+    position: relative;
 }
 
-.swiper-slide-active {
-    transform: scale(1); /* Scale up the active slide */
-    opacity: 1; /* Brighten the active slide */
+.slick-slide img {
+    max-width: 100%;
+    transition: transform 0.3s ease;
 }
 
-.swiper-slide img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
-}
-/* Стили для стрелок навигации Swiper */
-.swiper-button-next,
-.swiper-button-prev {
-    color: white; /* Измените цвет стрелок на белый */
+.slick-center img {
+    transform: scale(1.1);
 }
 
-.swiper-button-next::after,
-.swiper-button-prev::after {
-    font-size: 30px; /* Размер стрелок, можно настроить по вашему усмотрению */
+.slick-slide:not(.slick-center) img {
+    opacity: 0.6;
 }
 
-/* Дополнительные стили для расположения стрелок, если необходимо */
-.swiper-button-next {
-    right: 10px; /* Расположение следующей стрелки справа */
+.slider-container::before,
+.slider-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
 }
 
-.swiper-button-prev {
-    left: 10px; /* Расположение предыдущей стрелки слева */
+.slider-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent);
 }
+
+.slider-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    font-size: 50px;
+}
+
+.arrow.prev {
+    left: 10px;
+}
+
+.arrow.next {
+    right: 10px;
+}
+

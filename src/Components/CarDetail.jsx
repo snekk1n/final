@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import './style.css'; // Custom styles
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import './style.css';
 
 const CarDetails = () => {
     const { id } = useParams();
@@ -25,21 +24,43 @@ const CarDetails = () => {
         return <div>Loading...</div>;
     }
 
+    const NextArrow = (props) => {
+        const { onClick } = props;
+        return (
+            <div className="arrow next" onClick={onClick}>
+                &#8250;
+            </div>
+        );
+    };
+
+    const PrevArrow = (props) => {
+        const { onClick } = props;
+        return (
+            <div className="arrow prev" onClick={onClick}>
+                &#8249;
+            </div>
+        );
+    };
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2.3,
+        slidesToScroll: 1,
+        centerMode: true,
+        centerPadding: '60px',
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+    };
+
     return (
-        <div className="max-w-7xl mx-auto p-4">
-            <Swiper
-                spaceBetween={20}
-                slidesPerView={2.3}
-                centeredSlides={true}
-                loop={true}
-                navigation={true}
-                modules={[Navigation]}
-                slideToClickedSlide={true}
-            >
-                <SwiperSlide key="1"><img src={car.image} alt="Car 1" /></SwiperSlide>
-                <SwiperSlide key="2"><img src={car.image} alt="Car 2" /></SwiperSlide>
-                <SwiperSlide key="3"><img src={car.image} alt="Car 3" /></SwiperSlide>
-            </Swiper>
+        <div className="slider-container pt-4">
+            <Slider {...settings}>
+                <div key="1"><img src={car.image} alt="Car 1" /></div>
+                <div key="2"><img src={car.image} alt="Car 2" /></div>
+                <div key="3"><img src={car.image} alt="Car 3" /></div>
+            </Slider>
             <div className="mt-8 flex items-center justify-between text-white">
                 <h2 className="text-2xl font-bold">{car.make} {car.model}</h2>
                 <div className="flex gap-3 mt-6 justify-center">
