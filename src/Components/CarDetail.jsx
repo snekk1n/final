@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './CarSlider/CarSlider.css'
 import './style.css';
 
 const CarDetails = () => {
@@ -57,11 +58,11 @@ const CarDetails = () => {
     return (
         <div className="slider-container pt-4">
             <Slider {...settings}>
-                <div key="1"><img src={car.image} alt="Car 1" /></div>
-                <div key="2"><img src={car.image} alt="Car 2" /></div>
-                <div key="3"><img src={car.image} alt="Car 3" /></div>
+                <div key="1"><img src={car.image} alt="Car 1"/></div>
+                <div key="2"><img src={car.image} alt="Car 2"/></div>
+                <div key="3"><img src={car.image} alt="Car 3"/></div>
             </Slider>
-            <div className="mt-8 flex items-center justify-between text-white">
+            <div className="mx-14 mt-8 flex items-center justify-between text-white">
                 <h2 className="text-2xl font-bold">{car.make} {car.model}</h2>
                 <div className="flex gap-3 mt-6 justify-center">
                     <p className={'flex items-center gap-2'}>
@@ -133,8 +134,133 @@ const CarDetails = () => {
                         Полный
                     </p>
                 </div>
+                <div>
+                <p className="text-4xl font-bold">{car.price} руб./сутки</p>
+                    <a href="#rent"><button className="text-black w-full bg-white py-3 font-bold mt-1">Забронировать</button></a>
+                </div>
             </div>
-            <p className="mt-4 text-xl text-white">Цена: {car.price} Р/сут.</p>
+            <div className="text-white p-6">
+                <h2 className="text-xl font-bold mb-4">Похожие автомобили</h2>
+                <div className="flex justify-between">
+                    <div className="p-3 w-1/3">
+                        <div className="card-container">
+                            <img src={car.image} alt={car.name} className="card-image"/>
+                            <div className="card-gradient-top"></div>
+                            <div className="card-info-top">
+                                <p className="text-lg">{car.make + ' ' + car.model}</p>
+                                <p className="mt-2 text-sm">{car.price} Р/сут.</p>
+                            </div>
+                            <div className="card-gradient-bottom"></div>
+                            <div className="card-info-bottom">
+                                <div className="flex justify-between text-xs mt-4">
+                                    <span>{car.engineVolume} л.</span>
+                                    <span>{car.horsePower} л.с.</span>
+                                    <span>{car.year} г.</span>
+                                    <span>{car.fuelType}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="p-3 w-1/3">
+                        <div className="card-container">
+                            <img src={car.image} alt={car.name} className="card-image"/>
+                            <div className="card-gradient-top"></div>
+                            <div className="card-info-top">
+                                <p className="text-lg">{car.make + ' ' + car.model}</p>
+                                <p className="mt-2 text-sm">{car.price} Р/сут.</p>
+                            </div>
+                            <div className="card-gradient-bottom"></div>
+                            <div className="card-info-bottom">
+                                <div className="flex justify-between text-xs mt-4">
+                                    <span>{car.engineVolume} л.</span>
+                                    <span>{car.horsePower} л.с.</span>
+                                    <span>{car.year} г.</span>
+                                    <span>{car.fuelType}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="p-3 w-1/3">
+                        <div className="card-container">
+                            <img src={car.image} alt={car.name} className="card-image"/>
+                            <div className="card-gradient-top"></div>
+                            <div className="card-info-top">
+                                <p className="text-lg">{car.make + ' ' + car.model}</p>
+                                <p className="mt-2 text-sm">{car.price} Р/сут.</p>
+                            </div>
+                            <div className="card-gradient-bottom"></div>
+                            <div className="card-info-bottom">
+                                <div className="flex justify-between text-xs mt-4">
+                                    <span>{car.engineVolume} л.</span>
+                                    <span>{car.horsePower} л.с.</span>
+                                    <span>{car.year} г.</span>
+                                    <span>{car.fuelType}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id={'rent'} className="mx-14 text-white p-6 border flex justify-around">
+                <div className={'flex flex-col justify-center gap-4'}>
+                    <h2 className="text-2xl font-bold mb-4">Забронировать автомобиль</h2>
+                    <h3 className="text-xl font-bold mb-2">{car.make} {car.model}</h3>
+                    <p className="mb-6">Мы свяжемся с вами в течение часа для уточнения деталей.<br/>
+                        Либо забронируйте автомобиль по номеру <a href="tel:+996777335577" className="text-blue-400">996
+                            (777)
+                            33-55-77</a></p>
+                    <div className="mt-6 flex items-center">
+                        <img src="https://static.tildacdn.com/tild3434-3137-4335-a637-343836363131/2.svg" alt=""/>
+                        <p className="ml-2 text-sm text-gray-400">Нажимая кнопку "Подтвердить бронь"
+                            вы <br/> соглашаетесь с
+                            условиями обработки данных</p>
+                    </div>
+                </div>
+                <form className="space-y-4">
+                    <input
+                        type="text"
+                        placeholder="Ваше имя"
+                        className="w-full p-4 bg-transparent border border-gray-700 focus:outline-none"
+                    />
+
+                    <div className="relative">
+                        <input
+                            type="tel"
+                            placeholder="+996 (999) 999-999"
+                            className="w-full p-4 pl-16 bg-transparent border border-gray-700 focus:outline-none"
+                        />
+                    </div>
+
+                    <select
+                        className="w-full p-4 bg-transparent border border-gray-700 focus:outline-none"
+                    >
+                        <option value="Москва">Бишкек</option>
+                        <option value="Москва">Ош</option>
+                    </select>
+
+                    <div className="flex space-x-4">
+                        <div className="relative w-1/2">
+                            <input
+                                type="date"
+                                className="w-full p-4 bg-transparent border border-gray-700 focus:outline-none"
+                            />
+                        </div>
+                        <div className="relative w-1/2">
+                            <input
+                                type="date"
+                                className="w-full p-4 bg-transparent border border-gray-700 focus:outline-none"
+                            />
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="text-black w-full bg-white py-4 font-bold hover:bg-gray-100"
+                    >
+                        Подтвердить бронь
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
