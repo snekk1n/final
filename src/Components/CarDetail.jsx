@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './CarSlider/CarSlider.css'
 import './style.css';
+import PhoneInputField from './PhoneInputField.jsx'
 
 const CarDetails = () => {
     const { id } = useParams();
@@ -135,8 +136,10 @@ const CarDetails = () => {
                     </p>
                 </div>
                 <div>
-                <p className="text-4xl font-bold">{car.price} руб./сутки</p>
-                    <a href="#rent"><button className="text-black w-full bg-white py-3 font-bold mt-1">Забронировать</button></a>
+                    <p className="text-4xl font-bold">{car.price} руб./сутки</p>
+                    <a href="#rent">
+                        <button className="text-black w-full bg-white py-3 font-bold mt-1">Забронировать</button>
+                    </a>
                 </div>
             </div>
             <div className="text-white p-6">
@@ -201,7 +204,65 @@ const CarDetails = () => {
                     </div>
                 </div>
             </div>
-            <div id={'rent'} className="mx-14 text-white p-6 border flex justify-around">
+            <div className="p-6 mx-14 border-2 mb-6">
+                <h3 className="text-white text-xl mb-4">Комментарии</h3>
+                <div className="relative max-w-xl ">
+                    <input
+                        type="text"
+                        placeholder="Оставить комментарий"
+                        className="bg-gray-800 text-white w-full p-3 rounded-lg focus:outline-none"
+                    />
+                    <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-500">
+                        <svg width="24" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#1b77d2"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div className={'flex gap-4'}>
+                    <div className="w-1/3 border text-white p-4 rounded-lg mt-4">
+                        <div className="flex items-start space-x-4">
+                            <img src={"https://via.placeholder.com/150"} alt="avatar"
+                                 className="w-10 h-10 rounded-full"/>
+                            <div className="">
+                                <div className="">
+                                    <h4 className="text-lg font-bold">Allkill</h4>
+                                </div>
+                                <p className="mt-2 text-gray-300">Пока что это пик манхв рода я была несчастной но потом
+                                    стала счастливой в другом мире они добавили лишь одну деталь с меткой но они сделали
+                                    это
+                                    качественно в моментах тебе реально хочется поплакать это Очень хорошо</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-1/3 border text-white p-4 rounded-lg mt-4">
+                        <div className="flex items-start space-x-4">
+                            <img src={"https://via.placeholder.com/150"} alt="avatar"
+                                 className="w-10 h-10 rounded-full"/>
+                            <div className="">
+                                <div className="">
+                                    <h4 className="text-lg font-bold">Allkill</h4>
+                                </div>
+                                <p className="mt-2 text-gray-300">Пока что это пик манхв рода я была несчастной но потом
+                                    стала счастливой в другом мире они добавили лишь одну деталь</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-1/3 border text-white p-4 rounded-lg mt-4">
+                        <div className="flex items-start space-x-4">
+                            <img src={"https://via.placeholder.com/150"} alt="avatar"
+                                 className="w-10 h-10 rounded-full"/>
+                            <div className="">
+                                <div className="">
+                                    <h4 className="text-lg font-bold">Allkill</h4>
+                                </div>
+                                <p className="mt-2 text-gray-300">Пока что это пик манхв рода я была несчастной но потом
+                                    стала счастливой в другом мире они добавили лишь одну деталь</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id={'rent'} className="mx-14 text-white p-6 border-2 flex justify-around">
                 <div className={'flex flex-col justify-center gap-4'}>
                     <h2 className="text-2xl font-bold mb-4">Забронировать автомобиль</h2>
                     <h3 className="text-xl font-bold mb-2">{car.make} {car.model}</h3>
@@ -224,11 +285,7 @@ const CarDetails = () => {
                     />
 
                     <div className="relative">
-                        <input
-                            type="tel"
-                            placeholder="+996 (999) 999-999"
-                            className="w-full p-4 pl-16 bg-transparent border border-gray-700 focus:outline-none"
-                        />
+                        <PhoneInputField/>
                     </div>
 
                     <select

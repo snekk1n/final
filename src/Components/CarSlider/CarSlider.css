@@ -62,3 +62,12 @@
 .card-container:hover .card-gradient-bottom {
     opacity: 1;
 }
+/* Добавляем стили для изменения цвета точек */
+.slick-dots li button:before {
+    color: #fff; /* Изменяем цвет точек на оранжевый, можете поменять на любой другой */
+}
+
+/* Изменяем цвет активной точки */
+.slick-dots li.slick-active button:before {
+    color: #aaa; /* Изменяем цвет активной точки на светло-оранжевый */
+}
