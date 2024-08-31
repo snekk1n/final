@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './CarSlider/CarSlider.css'
 import './style.css';
 import PhoneInputField from './PhoneInputField.jsx'
+import CommentSection from './CommentSection.jsx'
 
 const CarDetails = () => {
     const { id } = useParams();
@@ -205,32 +206,40 @@ const CarDetails = () => {
                 </div>
             </div>
             <div className="p-6 mx-14 border-2 mb-6">
-                <h3 className="text-white text-xl mb-4">Комментарии</h3>
-                <div className="relative max-w-xl ">
-                    <input
-                        type="text"
-                        placeholder="Оставить комментарий"
-                        className="bg-gray-800 text-white w-full p-3 rounded-lg focus:outline-none"
-                    />
-                    <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-500">
-                        <svg width="24" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#1b77d2"></path>
-                        </svg>
-                    </button>
-                </div>
+                <CommentSection/>
+
                 <div className={'flex gap-4'}>
                     <div className="w-1/3 border text-white p-4 rounded-lg mt-4">
                         <div className="flex items-start space-x-4">
                             <img src={"https://via.placeholder.com/150"} alt="avatar"
                                  className="w-10 h-10 rounded-full"/>
-                            <div className="">
-                                <div className="">
+                            <div className="flex-1">
+                                <div className="flex justify-between items-center">
                                     <h4 className="text-lg font-bold">Allkill</h4>
+                                    <span className="text-sm text-gray-400">31 августа 2024</span>
                                 </div>
-                                <p className="mt-2 text-gray-300">Пока что это пик манхв рода я была несчастной но потом
-                                    стала счастливой в другом мире они добавили лишь одну деталь с меткой но они сделали
-                                    это
-                                    качественно в моментах тебе реально хочется поплакать это Очень хорошо</p>
+                                <div className="flex items-center mt-1">
+                                    {/* Рейтинг из 5 звезд */}
+                                    {[...Array(5)].map((_, index) => (
+                                        <svg
+                                            key={index}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className={`h-5 w-5 ${
+                                                index < 1 ? 'text-white' : 'text-gray-500'
+                                            }`}
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                d="M12 .587l3.668 7.568L24 9.423l-6 5.847L19.334 24 12 19.897 4.666 24 6 15.27l-6-5.847 8.332-1.268z"/>
+                                        </svg>
+                                    ))}
+                                </div>
+                                <p className="mt-2 text-gray-300">
+                                    Пока что это пик манхв рода я была несчастной но потом стала счастливой в другом
+                                    мире они добавили лишь одну деталь с меткой но они сделали это качественно в
+                                    моментах тебе реально хочется поплакать это Очень хорошо
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -238,12 +247,31 @@ const CarDetails = () => {
                         <div className="flex items-start space-x-4">
                             <img src={"https://via.placeholder.com/150"} alt="avatar"
                                  className="w-10 h-10 rounded-full"/>
-                            <div className="">
-                                <div className="">
+                            <div className="flex-1">
+                                <div className="flex justify-between items-center">
                                     <h4 className="text-lg font-bold">Allkill</h4>
+                                    <span className="text-sm text-gray-400">31 августа 2024</span>
                                 </div>
-                                <p className="mt-2 text-gray-300">Пока что это пик манхв рода я была несчастной но потом
-                                    стала счастливой в другом мире они добавили лишь одну деталь</p>
+                                <div className="flex items-center mt-1">
+                                    {/* Рейтинг из 5 звезд */}
+                                    {[...Array(5)].map((_, index) => (
+                                        <svg
+                                            key={index}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className={`h-5 w-5 ${
+                                                index < 3 ? 'text-white' : 'text-gray-500'
+                                            }`}
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                d="M12 .587l3.668 7.568L24 9.423l-6 5.847L19.334 24 12 19.897 4.666 24 6 15.27l-6-5.847 8.332-1.268z"/>
+                                        </svg>
+                                    ))}
+                                </div>
+                                <p className="mt-2 text-gray-300">
+                                    Пока что это пик манхв рода я была несчастной но потом стала счастливой в другом
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -251,12 +279,32 @@ const CarDetails = () => {
                         <div className="flex items-start space-x-4">
                             <img src={"https://via.placeholder.com/150"} alt="avatar"
                                  className="w-10 h-10 rounded-full"/>
-                            <div className="">
-                                <div className="">
+                            <div className="flex-1">
+                                <div className="flex justify-between items-center">
                                     <h4 className="text-lg font-bold">Allkill</h4>
+                                    <span className="text-sm text-gray-400">31 августа 2024</span>
                                 </div>
-                                <p className="mt-2 text-gray-300">Пока что это пик манхв рода я была несчастной но потом
-                                    стала счастливой в другом мире они добавили лишь одну деталь</p>
+                                <div className="flex items-center mt-1">
+                                    {/* Рейтинг из 5 звезд */}
+                                    {[...Array(5)].map((_, index) => (
+                                        <svg
+                                            key={index}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className={`h-5 w-5 ${
+                                                index < 4 ? 'text-white' : 'text-gray-500'
+                                            }`}
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                d="M12 .587l3.668 7.568L24 9.423l-6 5.847L19.334 24 12 19.897 4.666 24 6 15.27l-6-5.847 8.332-1.268z"/>
+                                        </svg>
+                                    ))}
+                                </div>
+                                <p className="mt-2 text-gray-300">
+                                    Пока что это пик манхв рода я была несчастной но потом стала счастливой в другом
+                                    мире они добавили лишь одну деталь
+                                </p>
                             </div>
                         </div>
                     </div>
