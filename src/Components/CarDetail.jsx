@@ -4,19 +4,27 @@ import { useParams } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './CarSlider/CarSlider.css'
+import './CarSlider/CarSlider.css';
 import './style.css';
-import PhoneInputField from './PhoneInputField.jsx'
-import CommentSection from './CommentSection.jsx'
+import PhoneInputField from './PhoneInputField.jsx';
+import CommentSection from './CommentSection.jsx';
+// import SimilarCars from "./SimilarCars.jsx";
+import CategoryPage from "./CategoryPage.jsx";
+import DateDifference from "./DateDifference.jsx";
 
 const CarDetails = () => {
     const { id } = useParams();
     const [car, setCar] = useState(null);
 
     useEffect(() => {
-        axios.get(`https://freetestapi.com/api/v1/cars/${id}`)
+        axios.get(`https://ash2521.pythonanywhere.com/cars/${id}/details/`, {
+            headers: {
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MzU4NjM1LCJpYXQiOjE3MjUxODU4MzUsImp0aSI6ImM4YmM0Y2EyMjdjZjQyNWU4MWJiYTY5NDgzNzQyZWYwIiwidXNlcl9pZCI6Mn0.r49sPBGa7D7GfPt-Sfj9PpsPHzmMxZ8BBq6yNQu34v4`
+            }
+        })
             .then(response => {
-                setCar(response.data);
+                setCar(response.data.car);
+                console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
@@ -60,12 +68,12 @@ const CarDetails = () => {
     return (
         <div className="slider-container pt-4">
             <Slider {...settings}>
-                <div key="1"><img src={car.image} alt="Car 1"/></div>
-                <div key="2"><img src={car.image} alt="Car 2"/></div>
-                <div key="3"><img src={car.image} alt="Car 3"/></div>
+                <div key="2"><img src={`https://ash2521.pythonanywhere.com/${car.img_front}`} alt="Car 2"/></div>
+                <div key="1"><img src={`https://ash2521.pythonanywhere.com/${car.img_back}`} alt="Car 1"/></div>
+                <div key="3"><img src={`https://ash2521.pythonanywhere.com/${car.salon}`} alt="Car 3"/></div>
             </Slider>
             <div className="mx-14 mt-8 flex items-center justify-between text-white">
-                <h2 className="text-2xl font-bold">{car.make} {car.model}</h2>
+            <h2 className="text-2xl font-bold">{car.title}</h2>
                 <div className="flex gap-3 mt-6 justify-center">
                     <p className={'flex items-center gap-2'}>
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,7 +81,7 @@ const CarDetails = () => {
                                 d="M27.72 14.1543L26.5586 11.6786C26.4339 11.4128 26.1544 11.2413 25.8457 11.2413H23.921C23.4906 11.2413 23.1417 11.5697 23.1417 11.9749V13.1312H22.543V12.1798C22.543 11.7746 22.1941 11.4462 21.7637 11.4462H19.6889V9.4446C19.6889 9.03939 19.34 8.71105 18.9096 8.71105H15.076V8.01251H18.9096C19.34 8.01251 19.6889 7.68408 19.6889 7.27896C19.6889 6.87375 19.34 6.54541 18.9096 6.54541H9.68398C9.2536 6.54541 8.90469 6.87375 8.90469 7.27896C8.90469 7.68408 9.2536 8.01251 9.68398 8.01251H13.5176V8.71105H9.68398C9.2536 8.71105 8.90469 9.03939 8.90469 9.4446V10.0543H7.19502C6.76464 10.0543 6.41572 10.3827 6.41572 10.7879V14.7243H5.34507V10.7879C5.34507 10.3827 4.99616 10.0543 4.56578 10.0543C4.1354 10.0543 3.78648 10.3828 3.78648 10.7879V20.1281C3.78648 20.5333 4.1354 20.8616 4.56578 20.8616C4.99616 20.8616 5.34507 20.5333 5.34507 20.1281V16.1914H6.41572V20.1281C6.41572 20.5333 6.76464 20.8616 7.19502 20.8616H10.2227L13.2992 23.2835C13.4395 23.3939 13.6163 23.4544 13.7992 23.4544H21.7638C22.1942 23.4544 22.5431 23.126 22.5431 22.7208V20.7212H23.1418V21.8775C23.1418 22.2827 23.4907 22.6111 23.9211 22.6111H25.8458C26.1545 22.6111 26.434 22.4396 26.5587 22.1738L27.7201 19.6981C27.7638 19.6048 27.7865 19.5038 27.7865 19.4018V14.4506C27.7865 14.3486 27.7638 14.2476 27.72 14.1543ZM26.2279 19.2472L25.3381 21.1441H24.7004V19.9877C24.7004 19.5825 24.3515 19.2541 23.9211 19.2541H21.7638C21.3334 19.2541 20.9845 19.5825 20.9845 19.9877V21.9874H14.082L11.0056 19.5655C10.8653 19.455 10.6884 19.3946 10.5056 19.3946H7.97431V11.5214H9.68398C10.1144 11.5214 10.4633 11.1931 10.4633 10.7879V10.1782H18.1304V12.18C18.1304 12.5852 18.4793 12.9135 18.9097 12.9135H20.9845V13.865C20.9845 14.2702 21.3334 14.5985 21.7638 14.5985H23.9211C24.3515 14.5985 24.7004 14.2702 24.7004 13.865V12.7085H25.3381L26.2279 14.6054V19.2472Z"
                                 fill="#858585"></path>
                         </svg>
-                        {car.engineVolume} л.
+                        {car.volume} л.
                     </p>
                     <p className={'flex items-center gap-2'}>
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +89,7 @@ const CarDetails = () => {
                                 d="M27.72 14.1543L26.5586 11.6786C26.4339 11.4128 26.1544 11.2413 25.8457 11.2413H23.921C23.4906 11.2413 23.1417 11.5697 23.1417 11.9749V13.1312H22.543V12.1798C22.543 11.7746 22.1941 11.4462 21.7637 11.4462H19.6889V9.4446C19.6889 9.03939 19.34 8.71105 18.9096 8.71105H15.076V8.01251H18.9096C19.34 8.01251 19.6889 7.68408 19.6889 7.27896C19.6889 6.87375 19.34 6.54541 18.9096 6.54541H9.68398C9.2536 6.54541 8.90469 6.87375 8.90469 7.27896C8.90469 7.68408 9.2536 8.01251 9.68398 8.01251H13.5176V8.71105H9.68398C9.2536 8.71105 8.90469 9.03939 8.90469 9.4446V10.0543H7.19502C6.76464 10.0543 6.41572 10.3827 6.41572 10.7879V14.7243H5.34507V10.7879C5.34507 10.3827 4.99616 10.0543 4.56578 10.0543C4.1354 10.0543 3.78648 10.3828 3.78648 10.7879V20.1281C3.78648 20.5333 4.1354 20.8616 4.56578 20.8616C4.99616 20.8616 5.34507 20.5333 5.34507 20.1281V16.1914H6.41572V20.1281C6.41572 20.5333 6.76464 20.8616 7.19502 20.8616H10.2227L13.2992 23.2835C13.4395 23.3939 13.6163 23.4544 13.7992 23.4544H21.7638C22.1942 23.4544 22.5431 23.126 22.5431 22.7208V20.7212H23.1418V21.8775C23.1418 22.2827 23.4907 22.6111 23.9211 22.6111H25.8458C26.1545 22.6111 26.434 22.4396 26.5587 22.1738L27.7201 19.6981C27.7638 19.6048 27.7865 19.5038 27.7865 19.4018V14.4506C27.7865 14.3486 27.7638 14.2476 27.72 14.1543ZM26.2279 19.2472L25.3381 21.1441H24.7004V19.9877C24.7004 19.5825 24.3515 19.2541 23.9211 19.2541H21.7638C21.3334 19.2541 20.9845 19.5825 20.9845 19.9877V21.9874H14.082L11.0056 19.5655C10.8653 19.455 10.6884 19.3946 10.5056 19.3946H7.97431V11.5214H9.68398C10.1144 11.5214 10.4633 11.1931 10.4633 10.7879V10.1782H18.1304V12.18C18.1304 12.5852 18.4793 12.9135 18.9097 12.9135H20.9845V13.865C20.9845 14.2702 21.3334 14.5985 21.7638 14.5985H23.9211C24.3515 14.5985 24.7004 14.2702 24.7004 13.865V12.7085H25.3381L26.2279 14.6054V19.2472Z"
                                 fill="#858585"></path>
                         </svg>
-                        {car.horsePower} л.с.
+                        {car.power} л.с.
                     </p>
                     <p className={'flex items-center gap-2'}>
                         <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,7 +100,7 @@ const CarDetails = () => {
                                 d="M21.3756 7.3411H19.9754V5.04297H8.01799V21.7156H7.18243V25.2491H20.811V21.7156H19.9754V20.422C20.2284 20.5369 20.509 20.6014 20.8045 20.6014C21.9144 20.6014 22.8175 19.6984 22.8175 18.5884V10.1308L21.3756 7.3411ZM20.6548 8.52506L21.6335 10.4186V11.156H19.9754V8.52506H20.6548ZM19.6271 24.0652H8.36639V22.8996H19.6271V24.0652ZM9.20194 21.7156V6.22692H18.7914V16.3392V18.5884V21.7156H9.20194V21.7156ZM20.8045 19.4174C20.3473 19.4174 19.9754 19.0455 19.9754 18.5884V16.3392V12.34H21.6335V18.5884C21.6335 19.0456 21.2616 19.4174 20.8045 19.4174Z"
                                 fill="#858585"></path>
                         </svg>
-                        {car.fuelType}</p>
+                        {car.fuel_type}</p>
                     <p className={'flex items-center gap-2'}>
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -133,81 +141,19 @@ const CarDetails = () => {
                             <line x1="15.0207" y1="10.0969" x2="15.0207" y2="19.0969" stroke="#858585"></line>
                             <line x1="16.1078" y1="8.93091" x2="20.668" y2="8.93091" stroke="#858585"></line>
                         </svg>
-                        Полный
+                        {car.type_car_body}
                     </p>
                 </div>
                 <div>
-                    <p className="text-4xl font-bold">{car.price} руб./сутки</p>
+                    <p className="text-4xl font-bold">{car.price_day} сом/сутки</p>
                     <a href="#rent">
                         <button className="text-black w-full bg-white py-3 font-bold mt-1">Забронировать</button>
                     </a>
                 </div>
             </div>
-            <div className="text-white p-6">
-                <h2 className="text-xl font-bold mb-4">Похожие автомобили</h2>
-                <div className="flex justify-between">
-                    <div className="p-3 w-1/3">
-                        <div className="card-container">
-                            <img src={car.image} alt={car.name} className="card-image"/>
-                            <div className="card-gradient-top"></div>
-                            <div className="card-info-top">
-                                <p className="text-lg">{car.make + ' ' + car.model}</p>
-                                <p className="mt-2 text-sm">{car.price} Р/сут.</p>
-                            </div>
-                            <div className="card-gradient-bottom"></div>
-                            <div className="card-info-bottom">
-                                <div className="flex justify-between text-xs mt-4">
-                                    <span>{car.engineVolume} л.</span>
-                                    <span>{car.horsePower} л.с.</span>
-                                    <span>{car.year} г.</span>
-                                    <span>{car.fuelType}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="p-3 w-1/3">
-                        <div className="card-container">
-                            <img src={car.image} alt={car.name} className="card-image"/>
-                            <div className="card-gradient-top"></div>
-                            <div className="card-info-top">
-                                <p className="text-lg">{car.make + ' ' + car.model}</p>
-                                <p className="mt-2 text-sm">{car.price} Р/сут.</p>
-                            </div>
-                            <div className="card-gradient-bottom"></div>
-                            <div className="card-info-bottom">
-                                <div className="flex justify-between text-xs mt-4">
-                                    <span>{car.engineVolume} л.</span>
-                                    <span>{car.horsePower} л.с.</span>
-                                    <span>{car.year} г.</span>
-                                    <span>{car.fuelType}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="p-3 w-1/3">
-                        <div className="card-container">
-                            <img src={car.image} alt={car.name} className="card-image"/>
-                            <div className="card-gradient-top"></div>
-                            <div className="card-info-top">
-                                <p className="text-lg">{car.make + ' ' + car.model}</p>
-                                <p className="mt-2 text-sm">{car.price} Р/сут.</p>
-                            </div>
-                            <div className="card-gradient-bottom"></div>
-                            <div className="card-info-bottom">
-                                <div className="flex justify-between text-xs mt-4">
-                                    <span>{car.engineVolume} л.</span>
-                                    <span>{car.horsePower} л.с.</span>
-                                    <span>{car.year} г.</span>
-                                    <span>{car.fuelType}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <CategoryPage categoryOfcar={car.category} currentCarName={car.title} />
             <div className="p-6 mx-14 border-2 mb-6">
                 <CommentSection/>
-
                 <div className={'flex gap-4'}>
                     <div className="w-1/3 border text-white p-4 rounded-lg mt-4">
                         <div className="flex items-start space-x-4">
@@ -343,20 +289,7 @@ const CarDetails = () => {
                         <option value="Москва">Ош</option>
                     </select>
 
-                    <div className="flex space-x-4">
-                        <div className="relative w-1/2">
-                            <input
-                                type="date"
-                                className="w-full p-4 bg-transparent border border-gray-700 focus:outline-none"
-                            />
-                        </div>
-                        <div className="relative w-1/2">
-                            <input
-                                type="date"
-                                className="w-full p-4 bg-transparent border border-gray-700 focus:outline-none"
-                            />
-                        </div>
-                    </div>
+                    <DateDifference price={car.price_day}/>
 
                     <button
                         type="submit"

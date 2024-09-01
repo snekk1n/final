@@ -39,9 +39,9 @@ const CarSlider = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`https://freetestapi.com/api/v1/cars`)
+        axios.get(`https://ash2521.pythonanywhere.com/index/`)
             .then(response => {
-                setCars(response.data);
+                setCars(response.data.cars);
             })
             .catch(error => {
                 console.log(error);
@@ -67,7 +67,7 @@ const CarSlider = () => {
             {cars.map((car, index) => (
                 <div key={index} className="p-3 mt-10" onClick={() => handleCardClick(car.id)}>
                     <div className="card-container">
-                        <img src={car.image} alt={car.name} className="card-image"/>
+                        <img src={`https://ash2521.pythonanywhere.com/${car.img_front}`} alt={car.name} className="card-image"/>
                         <div className="card-gradient-top"></div>
                         <div className="card-info-top">
                             <p className="text-lg">{car.make + ' ' + car.model}</p>
