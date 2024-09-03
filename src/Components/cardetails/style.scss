@@ -1,0 +1,81 @@
+.slider-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.slick-slide {
+    position: relative;
+}
+
+.slick-slide img {
+    transition: transform 0.3s ease;
+}
+
+.slick-center img {
+    transform: scale(1.1);
+}
+.image-slide{
+    z-index: 1;
+    width: 942px;
+}
+.slick-slide:not(.slick-center) .image-slide {
+    top: 0;
+    position: absolute;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+
+.slider-container::before,
+.slider-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+.slider-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.slider-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.arrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    font-size: 50px;
+}
+
+.arrows.prev {
+    left: 10px;
+}
+
+.arrows.next {
+    right: 10px;
+}
+input {
+    color-scheme: dark;
+}
+.slick-dots li button:before {
+    color: #fff; /* Изменяем цвет точек на оранжевый, можете поменять на любой другой */
+}
+
+/* Изменяем цвет активной точки */
+.slick-dots li.slick-active button:before {
+    color: #aaa; /* Изменяем цвет активной точки на светло-оранжевый */
+}
+.arrow {
+    display: none;
+}

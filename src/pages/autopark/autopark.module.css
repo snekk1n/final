@@ -1,0 +1,86 @@
+.container{
+    padding: 70px 50px;
+
+
+    select {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: #f8f8f8;
+        color: #333;
+        font-size: 16px;
+    }
+
+    option {
+        padding: 10px;
+        background-color: #fff;
+        color: #333;
+    }
+}
+
+.backButton{
+    font-size: 15px;
+    margin-top: 20px;
+    background-color: #565454;
+    width: 80px;
+    height: 40px;
+    transition: 0.3s;
+}
+
+.backButton:hover{
+    background-color: #888787;
+    transition: 0.3s;
+}
+
+.category{
+    h1{
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    h2{
+        font-size: 30px;
+    }
+}
+
+.cards{
+    margin-top: 40px ;
+    display: flex;
+    gap: 30px;
+    
+}
+
+.card {
+    transition: 0.3s;
+    width: 200px;
+    height: 90px;
+    background: #1c1b1b !important;
+    padding: 5px;
+
+    p{
+        font-weight: bold;
+    }
+    img{
+        width: 200px;
+    }
+}
+
+.card:hover{
+    background: #413f3f !important;
+    transition: 0.3s
+}
+
+.allcars{
+    /*height: 200px;*/
+    font-weight: bold;
+    padding: 33px;
+    background: #1c1b1b !important;
+}
+
+.allcars:hover{
+    background: #413f3f !important;
+    transition: 0.3s
+}
+
+
+

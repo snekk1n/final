@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './CarSlider.css';
+import './CarSlider.scss';
 
 const NextArrow = ({ onClick }) => (
     <div
@@ -17,7 +17,7 @@ const NextArrow = ({ onClick }) => (
             </svg>
         </button>
     </div>
-);
+); 
 
 const PrevArrow = ({ onClick }) => (
     <div
@@ -42,6 +42,7 @@ const CarSlider = () => {
         axios.get(`https://ash2521.pythonanywhere.com/index/`)
             .then(response => {
                 setCars(response.data.cars);
+                console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
@@ -65,21 +66,21 @@ const CarSlider = () => {
     return (
         <Slider {...settings}>
             {cars.map((car, index) => (
-                <div key={index} className="p-3 mt-10" onClick={() => handleCardClick(car.id)}>
+                <div key={index} className="p-3 mt-10 h-72" onClick={() => handleCardClick(car.id)}>
                     <div className="card-container">
-                        <img src={`https://ash2521.pythonanywhere.com/${car.img_front}`} alt={car.name} className="card-image"/>
+                        <img src={`https://ash2521.pythonanywhere.com/${car.img_front}`} alt={car.name} className="card-image h-max"/>
                         <div className="card-gradient-top"></div>
                         <div className="card-info-top">
-                            <p className="text-lg">{car.make + ' ' + car.model}</p>
-                            <p className="mt-2 text-sm">{car.price} Р/сут.</p>
+                            <p className="text-lg">{car.title}</p>
+                            <p className="mt-2 text-sm">{car.price_day} Р/сут.</p>
                         </div>
                         <div className="card-gradient-bottom"></div>
                         <div className="card-info-bottom">
                             <div className="flex justify-between text-xs mt-4">
-                                <span>{car.engineVolume} л.</span>
-                                <span>{car.horsePower} л.с.</span>
+                                <span>{car.volume} л.</span>
+                                <span>{car.power} л.с.</span>
                                 <span>{car.year} г.</span>
-                                <span>{car.fuelType}</span>
+                                <span>{car.fuel_type}</span>
                             </div>
                         </div>
                     </div>
