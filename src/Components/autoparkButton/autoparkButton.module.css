@@ -1,0 +1,29 @@
+.allPark{
+    font-size: 40px;
+    border-radius: 30px;
+    background-color: #212121;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    transition: 0.1s;
+    width: 1390px;
+    height: 200px;
+    padding: 30px;
+}
+
+.allPark:hover{
+    border:  solid white;
+    transition: 0.1s;
+}
+
+.next{
+    color: transparent !important;
+    -webkit-text-stroke: 1px rgb(255 255 255);
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.last {
+    padding: 50px 150px;
+}

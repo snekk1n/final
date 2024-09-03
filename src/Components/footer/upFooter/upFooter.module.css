@@ -1,0 +1,48 @@
+body{
+    background-color: #141414;
+    font-family: 'Futura PT', sans-serif;
+    color: white;
+}
+
+
+.upfooter{
+    margin: 200px 120px;
+    font-size: 20px;
+
+    h1{
+        font-size: 50px;
+        font-weight: lighter;
+    }
+
+    .middleP{
+        margin: 20px 0;
+    }
+
+    p{
+        font-weight: lighter;
+        color: #afacac;
+    }
+
+}
+
+.secondH1{
+    margin-top: 60px;
+}
+
+.endP{
+    margin-top: 20px;
+}
+
+.lastH1{
+    margin-top: 60px;
+}
+
+.lastP{
+    margin: 20px 0;
+}
+
+.downP{
+    margin-top: 40px;
+}
+
+

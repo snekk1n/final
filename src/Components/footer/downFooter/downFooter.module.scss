@@ -1,0 +1,63 @@
+
+.downFooter{
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Futura PT', sans-serif;
+    background: url('./../../../assets/Black.png');
+
+    button, p, h4{
+        color: #888;
+        font-weight: 300;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: 0.3s;
+    }
+
+    p:hover{
+        color: white;
+        transition: 0.3s;
+    }
+    button:hover{
+        color: white;
+        transition: 0.3s;
+    }
+
+    button img{
+        width: 30px;
+    }
+    p img{
+        width: 30px;
+    }
+
+
+    .logo{
+        width: 60px;
+    }
+
+
+
+    .text{
+        margin: 20px;
+        padding: 40px 0;
+        display: flex;
+        gap: 150px;
+    }
+
+    .sections{
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        font-size: 15px;
+    }
+
+    span{
+        font-size: 20px;
+    }
+}
+
+
+

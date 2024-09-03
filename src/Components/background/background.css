@@ -1,0 +1,114 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: #181818;
+}
+
+.main-background {
+    background: linear-gradient(#222123);
+    height: 100vh;
+}
+
+.video-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+}
+
+.video-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) -10%, rgb(24, 24, 24) 95%);
+    z-index: 0;
+}
+
+.content {
+    position: relative;
+    color: white;
+    text-align: center;
+    top: 60%;
+    font-weight: bold;
+}
+
+.h-content {
+    font-size: 60px;
+}
+
+.p-content{
+    font-size: 30px;
+    font-weight: lighter;
+
+}
+
+.buttons {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+  button {
+      font-weight: lighter;
+      font-size: 30px;
+      background-color: #1d1c1e;
+      width: 250px;
+      height: 75px;
+      border-radius: 50px;
+      transition: 0.3s;
+  }
+
+    button:hover {
+        background-color: white;
+        color: black;
+        transition: 0.3s;
+    }
+}
+
+.under {
+    background: linear-gradient(to bottom, rgba(24, 24, 24, 0.3), rgba(51, 51, 51, 1));
+    padding-top: 150px;
+    padding-bottom: 150px;
+    display: flex;
+    gap: 80px;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+
+    h1 {
+        text-align: center;
+        color: transparent !important;
+        -webkit-text-stroke: 1px rgb(255 255 255);
+        font-weight: bold;
+        font-size: 80px;
+    }
+
+    p {
+        font-size: 20px;
+        color: white;
+    }
+}
+
+.col-3 {
+    text-align: center;
+    width: 300px;
+}
+
+
