@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import token from './token.js';
 
-function CommentSection({ carId }) {
+function MainCommentSection() {
     const [comment, setComment] = useState("");
     const [error, setError] = useState(null); // Состояние для хранения ошибки
 
@@ -16,14 +15,14 @@ function CommentSection({ carId }) {
     const submitComment = async () => {
         try {
             const response = await axios.post(
-                `https://ash2521.pythonanywhere.com/cars/${carId}/details/`,
+                `https://ash2521.pythonanywhere.com/comments/`,
                 {
                     text: comment,
                     user: 2
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTUyNzA2LCJpYXQiOjE3MjUzNzk5MDYsImp0aSI6IjgzZGUyNmMzYzUzZjQzODY4MzE0NDhiYWIwMWFhOGZjIiwidXNlcl9pZCI6Mn0.Q_vEZ2-2lnjKbRui3EioLQs0_UTuiTa-uPsx7e5cbkc`,
                         'Content-Type': 'application/json',
                     },
                 }
@@ -57,9 +56,9 @@ function CommentSection({ carId }) {
                     </svg>
                 </button>
             </div>
-            {error && <p className="text-red-500 mt-2">{error}</p>} {/* Вывод сообщения об ошибке */}
+            {error && <p className="text-red-500 mt-2">{error}</p>}
         </div>
     );
 }
 
-export default CommentSection;
+export default MainCommentSection;

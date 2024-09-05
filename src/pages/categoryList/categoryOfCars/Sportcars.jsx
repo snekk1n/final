@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import cls from "../../autopark/autopark.module.css";
 import Gwagon from "../assets/GElik.webp";
 import Cabrio from "../assets/Cabrio.webp";
@@ -102,9 +102,14 @@ const Sportcars = () => {
                                 src={car.img_front}
                                 alt={car.name} className="card-image h-max"/>
                             <div className="card-gradient-top"></div>
-                            <div className="card-info-top">
-                                <p className="text-lg">{car.title}</p>
-                                <p className="mt-2 text-sm">{car.price_day} Р/сут.</p>
+                            <div className="card-info-top flex justify-between w-100">
+                                <div>
+                                    <p className="text-lg">{car.title}</p>
+                                    <p className="mt-2 text-sm">{car.price_day} Р/сут.</p>
+                                </div>
+                                <div>
+                                    <p className={`rounded px-2 py-1 text-sm ${car.status === 2 ? 'bg-green-600' : 'bg-red-600'}`}>{car.status === 2 ? 'Свободен' : 'Забронирован'}</p>
+                                </div>
                             </div>
                             <div className="card-gradient-bottom"></div>
                             <div className="card-info-bottom">

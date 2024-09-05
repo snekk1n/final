@@ -1,25 +1,29 @@
-import cls from './header.module.css'
-import logo from './../../assets/Logotype.png'
-import {Link} from "react-router-dom";
 import React, { useState } from 'react';
+import cls from './header.module.css';
+import logo from './../../assets/Logotype.png';
+import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import {useSelector} from "react-redux";
+import UserPage from "../../pages/user/UserPage.jsx";
 
-const Header = () => {
+const Header = (props) => {
+    const authData = useSelector((state) => state.auth);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
+
     return (
         <>
             <div className={cls.header}>
                 <div className={cls.container}>
                     <div className="flex items-center justify-between">
                         <nav className="flex items-center gap-5">
-                            <Link to={"/"}>
-                                <img className={cls.logo} src={logo} alt="#"/>
+                            <Link to="/">
+                                <img className={cls.logo} src={logo} alt="Logo"/>
                             </Link>
-                            <Link to={"/autoPark"}>
-                                <a href="">Автопарк</a>
+                            <Link to="/autoPark">
+                                <p>Автопарк</p>
                             </Link>
                             <button onClick={openModal}>Контакты</button>
                             <Modal
@@ -45,19 +49,36 @@ const Header = () => {
                                 <h2>БРЕНД</h2>
                                 <p>НОМЕР</p>
                                 <p>ПОЧТА</p>
-                                <button onClick={closeModal} style={{ marginTop: '20px' }}>Закрыть</button>
+                                <button onClick={closeModal} style={{marginTop: '20px'}}>Закрыть</button>
                             </Modal>
-                            <p href="">Отзывы</p>
+                            <Link to="/reviews">
+                                <p>Отзывы</p>
+                            </Link>
                         </nav>
                         <nav className="flex items-center gap-5">
-                        <a href="#">Войти</a>
-                            <a href="#">Зарегистрироваться</a>
+                            {
+                                authData.successAuth ? (
+                                    <>
+                                        <div>авторизация гуд</div>
+                                        <Link to="/UserPage">
+                                            <p>Профиль</p>
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <button onClick={() => props.setIsStateModal(true)}>Войти</button>
+                                        <button onClick={() => props.setIsStateModal(true)}>Зарегистрироваться</button>
+                                    </>
+                                )
+                            }
+
                         </nav>
                     </div>
                 </div>
             </div>
         </>
-    );
+    )
+        ;
 };
 
 export default Header;

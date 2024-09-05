@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
 const DateDifference = ({ price, onStartDateChange, onEndDateChange }) => {
-    const [date1, setDate1] = useState('');
+    const today = new Date().toISOString().split('T')[0]; // Получаем сегодняшнюю дату в формате 'YYYY-MM-DD'
+    const [date1, setDate1] = useState(today); // Устанавливаем первую дату по умолчанию как сегодняшнюю
     const [date2, setDate2] = useState('');
     const [dayDifference, setDayDifference] = useState(null);
 
@@ -17,7 +18,6 @@ const DateDifference = ({ price, onStartDateChange, onEndDateChange }) => {
 
     const handleDateChange1 = (e) => {
         const newDate1 = e.target.value;
-        const today = new Date().toISOString().split('T')[0]; // Получаем сегодняшнюю дату в формате 'YYYY-MM-DD'
 
         if (newDate1 >= today) { // Проверяем, что первая дата не раньше сегодняшнего дня
             setDate1(newDate1);
@@ -70,6 +70,7 @@ const DateDifference = ({ price, onStartDateChange, onEndDateChange }) => {
             )}
         </div>
     );
+
 };
 
 export default DateDifference;

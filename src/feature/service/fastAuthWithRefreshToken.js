@@ -1,16 +1,14 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {$api} from "../../api.js";
 
-export const loginByEmail = createAsyncThunk(
-    "authByEmail/login",
-    async (data, thunkAPI) => {
-        console.log(data);
+export const fastAuthWithRefreshToken = createAsyncThunk(
+    "fastAuthWithRefreshToken",
+    async (token, thunkAPI) => {
         try {
-            const response = await $api.post("login/", data)
-            localStorage.setItem("refresh", response.data.refresh)
+            const response = await $api.post("token/refresh/", token);
+            console.log(response.data)
             localStorage.setItem("access", response.data.access)
             return thunkAPI.fulfillWithValue(response)
-
         } catch (error) {
             return thunkAPI.rejectWithValue("Авторизация не прошла!");
         }
