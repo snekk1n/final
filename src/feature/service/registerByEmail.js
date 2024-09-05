@@ -6,6 +6,8 @@ export const registerByEmail = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const response = await $api.post("register/", data)
+            localStorage.setItem("refresh", response.data.refresh)
+            localStorage.setItem("access", response.data.access)
             return thunkAPI.fulfillWithValue(response)
 
         } catch (error) {

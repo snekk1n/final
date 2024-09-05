@@ -7,15 +7,15 @@ const RentalPage = ({ car, price }) => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [phone, setPhone] = useState('');
-    console.log(car)
+    console.log(phone)
     console.log(startDate)
     console.log(endDate)
     const handleConfirmBooking = async () => {
         try {
-            const response = await axios.post('https://ash2521.pythonanywhere.com/rentals/create/', {
-                car: car,
+            const response = await axios.post(`https://ash2521.pythonanywhere.com/rentals/create/${car}/`, {
                 start_date: startDate,
                 end_date: endDate,
+                phone_number: phone
             });
             console.log('Booking confirmed:', response.data);
             // Handle successful booking confirmation (e.g., display a success message)

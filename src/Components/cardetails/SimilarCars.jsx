@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import token from './token.js';
 
 const SimilarCars = ({ categoryId, currentCarName }) => {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ const SimilarCars = ({ categoryId, currentCarName }) => {
     useEffect(() => {
         axios.get(`https://ash2521.pythonanywhere.com/cars/?category=${categoryId}`, {
             headers: {
-                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MzU4NjM1LCJpYXQiOjE3MjUxODU4MzUsImp0aSI6ImM4YmM0Y2EyMjdjZjQyNWU4MWJiYTY5NDgzNzQyZWYwIiwidXNlcl9pZCI6Mn0.r49sPBGa7D7GfPt-Sfj9PpsPHzmMxZ8BBq6yNQu34v4`
+                'Authorization': `Bearer ${token}`
             }
         })
             .then(response => {
@@ -45,7 +46,7 @@ const SimilarCars = ({ categoryId, currentCarName }) => {
                                     <p className="mt-2 text-sm">{car.price_day} Р/сут.</p>
                                 </div>
                                 <div>
-                                    <p className={`rounded px-2 py-1 text-sm ${car.status === 'Свободен' ? 'bg-green-600' : 'bg-red-600'}`}>{car.status}</p>
+                                    <p className={`rounded px-2 py-1 text-sm ${car.status === 2 ? 'bg-green-600' : 'bg-red-600'}`}>{car.status === 2 ? 'Свободен' : 'Забронирован'}</p>
                                 </div>
                             </div>
                             <div className="card-gradient-bottom"></div>

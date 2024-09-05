@@ -13,6 +13,7 @@ import CategoryPage from "./CategoryPage.jsx";
 import Comment from './Comment.jsx'
 import StarRating from "./StarRating.jsx";
 import RentalPage from "./RentalPage.jsx";
+import token from './token.js';
 
 const CarDetails = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -26,7 +27,7 @@ const CarDetails = () => {
     useEffect(() => {
         axios.get(`https://ash2521.pythonanywhere.com/cars/${id}/details/`, {
             headers: {
-                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MzU4NjM1LCJpYXQiOjE3MjUxODU4MzUsImp0aSI6ImM4YmM0Y2EyMjdjZjQyNWU4MWJiYTY5NDgzNzQyZWYwIiwidXNlcl9pZCI6Mn0.r49sPBGa7D7GfPt-Sfj9PpsPHzmMxZ8BBq6yNQu34v4`
+                'Authorization': `Bearer ${token}`
             }
         })
             .then(response => {
@@ -41,7 +42,6 @@ const CarDetails = () => {
         return <div className={'hidden'}>Loading...</div>;
     }
 
-    // Кнопка "Назад"
     const BackButton = () => {
         const goBack = () => {
             navigate(-1);
@@ -76,20 +76,20 @@ const CarDetails = () => {
             return;
         }
 
-        console.log('Button clicked'); // Проверка вызова функции
+        console.log('Button clicked');
         const updatedCar = {
             ...car,
-            status: 3 // Предположим, что 3 — это идентификатор статуса "на прокате"
+            status: 3
         };
 
 
         axios.patch(`https://ash2521.pythonanywhere.com/cars/${id}/`, updatedCar, {
             headers: {
-                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MzgwMDY5LCJpYXQiOjE3MjUyMDcyNjksImp0aSI6IjA2NTM2OGUxMGY2ZjQ5Y2ZiY2VhYWQ4Yzc1ZWNiYjNmIiwidXNlcl9pZCI6Mn0.W9Pgv5NBgo7qnA8u9wnSoOgAW7F4r1xDp9MAoBd29tg`
+                'Authorization': `Bearer ${token}`
             }
         })
             .then(response => {
-                setCar(response.data); // обновляем состояние с новыми данными с сервера
+                setCar(response.data);
                 console.log('Статус успешно обновлён на "на прокате"');
             })
             .catch(error => {
@@ -205,12 +205,12 @@ const CarDetails = () => {
                 </div>
                 <div>
                     <p className="text-4xl font-bold">{car.car.price_day} сом/сутки</p>
-                    <a href={car.car.status === 'Свободен' ? '#rent' : undefined}>
+                    <a href={car.car.status === 2 ? '#rent' : undefined}>
                         <button
-                            className={`w-full py-3 font-bold mt-1 ${car.car.status === 'Свободен' ? 'bg-white text-black' : 'bg-red-600 text-white cursor-not-allowed'}`}
-                            disabled={car.car.status !== 'Свободен'}
+                            className={`w-full py-3 font-bold mt-1 ${car.car.status === 2 ? 'bg-white text-black' : 'bg-red-600 text-white cursor-not-allowed'}`}
+                            disabled={car.car.status !== 2}
                         >
-                            {car.car.status === 'Свободен' ? 'Забронировать' : 'На прокате'}
+                            {car.car.status === 2 ? 'Забронировать' : 'На прокате'}
                         </button>
                     </a>
                 </div>

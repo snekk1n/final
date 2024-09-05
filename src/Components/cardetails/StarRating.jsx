@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import token from './token.js';
 
 function StarRating({ id }) {
     const [rating, setRating] = useState(0);
@@ -43,7 +44,7 @@ function StarRating({ id }) {
                 },
                 {
                     headers: {
-                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MzU4NjM1LCJpYXQiOjE3MjUxODU4MzUsImp0aSI6ImM4YmM0Y2EyMjdjZjQyNWU4MWJiYTY5NDgzNzQyZWYwIiwidXNlcl9pZCI6Mn0.r49sPBGa7D7GfPt-Sfj9PpsPHzmMxZ8BBq6yNQu34v4`,
+                        Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json',
                     },
                 });
