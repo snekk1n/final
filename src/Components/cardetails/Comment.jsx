@@ -49,27 +49,23 @@ const Comment = ({ id }) => {
     };
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-5 flex gap-3">
             {comments.length === 0 ? (
                 <div>Комментариев пока нет...</div>
             ) : (
                 comments.map((comment, index) => (
                     <div key={index} className="w-full border text-white p-4 rounded-lg mt-4">
                         <div className="flex items-start space-x-4">
-                            <img
-                                src={comment.avatar ||
-                                    <svg className="SvgIcon_root__n_a0S Avatar_fallback__BjY1i" focusable="false"
-                                         viewBox="0 0 24 24" aria-hidden="true">
-                                        <path
-                                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                                    </svg>}
-                                alt="avatar"
-                                className="w-10 h-10 rounded-full"
-                            />
+                            <svg className="w-10 h-10 rounded-full bg-zinc-800" focusable="false"
+                                 viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                            </svg>
                             <div className="flex-1">
                                 <div className="flex justify-between items-center gap-8">
                                     <h4 className="text-lg font-bold">{comment.user || 'Unknown'}</h4>
-                                    <span className="text-sm text-gray-400">{comment.created_at.slice(0, comment.created_at.indexOf("T"))}</span>
+                                    <p
+                                        className="text-sm text-gray-400">{comment.created_at.slice(0, comment.created_at.indexOf("T"))}</p>
                                     {editingComment === comment.id ? (
                                         <button onClick={handleSave} className="text-green-500">Сохранить</button>
                                     ) : (

@@ -23,7 +23,7 @@ const MainComment = () => {
     }
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-4 flex gap-3">
             {comments.map((comment, index) => (
                 <div key={index} className="w-full border text-white p-4 rounded-lg mt-4">
                     <div className="flex items-start space-x-4">
@@ -35,7 +35,7 @@ const MainComment = () => {
                         <div className="flex-1">
                             <div className="flex justify-between items-center gap-8">
                                 <h4 className="text-lg font-bold">{comment.author.username || 'Unknown'}</h4>
-                                <span className="text-sm text-gray-400">{comment.created_at.slice(0, comment.created_at.indexOf("T"))}</span>
+                                <p className="text-sm text-gray-400">{comment.created_at.slice(0, comment.created_at.indexOf("T"))}</p>
                             </div>
                             <p className="mt-2 text-gray-300 text-lg">
                                 {comment.text || 'No comment text available'}

@@ -1,15 +1,12 @@
-import { useState } from 'react';
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
 
-function PhoneInputField() {
-    const [phone, setPhone] = useState('');
-
+function PhoneInputField({ value, onChange }) {
     return (
         <PhoneInput
             country={'kg'}
-            value={phone}
-            onChange={phone => setPhone(phone)}
+            value={value}
+            onChange={onChange} // Передаем значение вверх
             inputStyle={{
                 width: '100%',
                 height: '70px',

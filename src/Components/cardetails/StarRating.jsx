@@ -6,6 +6,12 @@ function StarRating({ id }) {
     const [rating, setRating] = useState(0);
     const [hoverRating, setHoverRating] = useState(0);
     const [isRatingSubmitted, setIsRatingSubmitted] = useState(false);
+    const [isFirstRating, setIsFirstRating] = useState(true); // Новое состояние
+
+    useEffect(() => {
+        // При загрузке компонента проверяем, был ли отправлен рейтинг
+        checkExistingRating();
+    }, []);
 
     useEffect(() => {
         if (isRatingSubmitted && rating > 0) {
@@ -13,6 +19,25 @@ function StarRating({ id }) {
             setIsRatingSubmitted(false);
         }
     }, [rating, isRatingSubmitted]);
+
+    const checkExistingRating = async () => {
+        try {
+            const response = await axios.get(
+                `https://ash2521.pythonanywhere.com/cars/${id}/details/`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            if (response.data.stars) {
+                setIsFirstRating(false); // Рейтинг уже существует, значит PATCH
+                setRating(response.data.stars); // Устанавливаем текущий рейтинг
+            }
+        } catch (error) {
+            console.log("Рейтинг не найден, будет использоваться POST:", error.response?.data || error.message);
+        }
+    };
 
     const handleKeyDown = async (event) => {
         if (event.key === 'Enter') {
@@ -37,18 +62,24 @@ function StarRating({ id }) {
         }
 
         try {
-            const response = await axios.patch(
-                `https://ash2521.pythonanywhere.com/cars/${id}/details/`,
-                {
-                    stars: rating
+            const url = `https://ash2521.pythonanywhere.com/cars/${id}/details/`;
+            const method = isFirstRating ? 'post' : 'patch'; // Выбираем метод запроса
+            const response = await axios({
+                method,
+                url,
+                data: {
+                    stars: rating,
                 },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                    },
-                });
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
             console.log("Рейтинг отправлен:", response.data);
+            if (isFirstRating) {
+                setIsFirstRating(false); // После первого POST меняем на PATCH
+            }
         } catch (error) {
             console.error("Ошибка при отправке рейтинга:", error.response?.data || error.message);
         }

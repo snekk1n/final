@@ -2,26 +2,37 @@ import { useState } from 'react';
 import axios from 'axios';
 import DateDifference from './DateDifference';
 import PhoneInputField from "./PhoneInputField.jsx";
+import moment from 'moment';
+import token from './token.js'
 
 const RentalPage = ({ car, price }) => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [phone, setPhone] = useState('');
-    console.log(phone)
-    console.log(startDate)
-    console.log(endDate)
+
     const handleConfirmBooking = async () => {
+        const today = moment().format('YYYY-MM-DD');
+        const bookingStartDate = startDate || today;
+
         try {
-            const response = await axios.post(`https://ash2521.pythonanywhere.com/rentals/create/${car}/`, {
-                start_date: startDate,
-                end_date: endDate,
-                phone_number: phone
-            });
+            const response = await axios.post(
+                `https://ash2521.pythonanywhere.com/rentals/create/${car}/`,
+                {
+                    start_date: bookingStartDate,
+                    end_date: endDate,
+                    phone_number: phone
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
             console.log('Booking confirmed:', response.data);
-            // Handle successful booking confirmation (e.g., display a success message)
+            // Обработка успешного подтверждения бронирования
         } catch (error) {
             console.error('Error confirming booking:', error);
-            // Handle error (e.g., display an error message)
+            // Обработка ошибки
         }
     };
 
